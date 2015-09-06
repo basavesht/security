@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+org.jboss.ide.eclipse.as.core.singledeployable.deployableList=src/com/bosch/pat/HistoricalDataPopulator.java\nsrc/main/java/com/bosch/security/util/TestUtil.java\nsrc/main/java/com/bosch/security/util/TestUtil.java\napp/com/bosch/pat/util/TestJoda.java\n

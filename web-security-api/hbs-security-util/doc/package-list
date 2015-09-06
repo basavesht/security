@@ -1,0 +1,14 @@
+com.bosch.security
+com.bosch.security.codecs
+com.bosch.security.codecs.impl
+com.bosch.security.config
+com.bosch.security.crypto
+com.bosch.security.crypto.impl
+com.bosch.security.errors
+com.bosch.security.logger
+com.bosch.security.random
+com.bosch.security.random.impl
+com.bosch.security.util
+com.bosch.security.validator
+com.bosch.security.validator.impl
+com.bosch.security.validator.rules

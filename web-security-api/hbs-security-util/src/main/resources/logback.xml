@@ -1,0 +1,35 @@
+<configuration>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="APP"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>./logs/HBSSecurity.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>./logs/HBSSecurity.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>91</maxHistory>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%date{MM-dd-yyyy HH:mm:ss.SSS}] [%thread] %level -
+				%C{1}/%M: %message%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- HBS Security loggers -->
+	<logger name="com.bosch.security" level="DEBUG" additivity="false">
+		<appender-ref ref="APP" />
+	</logger>
+	
+	<root level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="APP" />
+	</root>
+
+</configuration>

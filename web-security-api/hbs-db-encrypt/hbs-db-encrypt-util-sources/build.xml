@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="clean-build" name="hbs-db-encrypt-util">
+	<!--ANT 1.7 is required                                        -->
+
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="build" />
+	<property name="dist.dir" value="dist" />
+	<property name="jar.dir"   	value="${dist.dir}"/>
+	<property name="lib.dir" value="lib" />
+    <property name="conf.dir"   	value="${dist.dir}/config"/>
+	<property name="config.dir" value="src/main/resources/config" />
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+	
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+		<mkdir dir="${conf.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath"/>
+	</target>
+
+	<target name="create_run_jar" depends="compile">
+		<jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${build.dir}" manifest="mainClass.mf"
+				filesetmanifest="mergewithoutmain">
+			<fileset dir="${build.dir}"/>
+		</jar>
+	</target>
+
+	<target name="clean-build" depends="clean, create_run_jar">
+		<copy todir="${dist.dir}/lib" >
+			<fileset dir="lib" includes="**"/>
+		</copy>
+		<copy todir="${conf.dir}">
+	    	<fileset dir="${config.dir}" includes="**/*"/>
+	    </copy>
+		<copy todir="${dist.dir}" >
+			<fileset dir="." includes="encrypt.sh"/>
+		</copy>
+	</target>
+</project>
